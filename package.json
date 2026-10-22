@@ -1,10 +1,34 @@
 {
   "name": "@local/a-share-screener",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "A股分析插件：个股深度体检（市值分档/公告风险/技术面/资金面/筹码）+ 5日均线战法选股",
-  "keywords": ["a-share", "screener", "stock", "个股分析", "选股", "风险扫描"],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-bundle",
+    "cordis",
+    "a-share",
+    "screener",
+    "stock",
+    "个股分析",
+    "选股",
+    "风险扫描"
+  ],
+  "author": "maxcloser",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxcloser/a-share-screener-push.git"
+  },
+  "homepage": "https://github.com/maxcloser/a-share-screener-push#readme",
+  "bugs": {
+    "url": "https://github.com/maxcloser/a-share-screener-push/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "exports": {
     ".": "./index.js",
     "./locale/*.json": "./locale/*.json",
@@ -23,7 +47,8 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {
