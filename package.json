@@ -1,0 +1,33 @@
+{
+  "name": "@local/a-share-screener",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A股分析插件：个股深度体检（市值分档/公告风险/技术面/资金面/筹码）+ 5日均线战法选股",
+  "keywords": ["a-share", "screener", "stock", "个股分析", "选股", "风险扫描"],
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "lib/cli.js",
+    "lib/strategies.js",
+    "lib/screener.js",
+    "lib/eastmoney.js",
+    "lib/analyze.js",
+    "lib/indicators.js",
+    "lib/lhb.js",
+    "lib/extremes.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

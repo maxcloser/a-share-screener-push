@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "A-Share Analyzer",
+    "description": "Deep single-stock health check plus screening: enter a name to get exact market-cap tier, PE/PB, an announcement risk scan (investigation, delisting risk, impairments, inquiry letters — routine filings filtered out to avoid false positives), ST/STAR/BSE exclusion checks, technicals, capital flow and chip structure, with a verdict, entry/stop references and position sizing. Also supports 5-day MA breakout screening."
+  }
+}

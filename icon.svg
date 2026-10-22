@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="A-share screener">
+  <defs>
+    <linearGradient id="a-share-screener-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b3261e"/>
+      <stop offset="1" stop-color="#7a1712"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#a-share-screener-bg)"/>
+  <rect x="13" y="36" width="7" height="13" rx="2" fill="#ffd6d0"/>
+  <rect x="23" y="29" width="7" height="20" rx="2" fill="#ffe9e5"/>
+  <rect x="33" y="23" width="7" height="26" rx="2" fill="#ffffff"/>
+  <rect x="43" y="14" width="7" height="35" rx="2" fill="#ffffff"/>
+  <path d="M14 31 24 24l10 5 12-11" fill="none" stroke="#ffcf8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="46" cy="18" r="3.2" fill="#ffcf8a"/>
+</svg>
