@@ -1,5 +1,27 @@
-import { DISCLAIMER, renderScreenMarkdown, runScreen } from './lib/screener.js'
-import { analyzeStock, renderAnalysisMarkdown } from './lib/analyze.js'
+import * as screenerMod from './lib/screener.js'
+import * as analyzeMod from './lib/analyze.js'
+
+// 带版本号的动态 import：宿主进程缓存的是本入口模块，
+// 这里再用 `?v=` 重新拉取 lib 实现，改完 lib 后无需重启宿主。
+const MODULE_VERSION = '2026-10-26-bigcandle-quality'
+async function loadFresh() {
+  const [screener, analyze] = await Promise.all([
+    import(`./lib/screener.js?v=${MODULE_VERSION}`),
+    import(`./lib/analyze.js?v=${MODULE_VERSION}`),
+  ])
+  return { screener, analyze }
+}
+// 首次调用时懒加载：不在模块顶层使用 await，保证宿主 host 的 CJS require 路径可用
+let freshCall = null
+function callFresh(fnName) {
+  if (!freshCall) freshCall = loadFresh()
+  return freshCall.then(({ screener, analyze }) => {
+    const ns = { ...screenerMod, ...analyzeMod, ...screener, ...analyze }
+    return ns[fnName]
+  })
+}
+// 同步导出保留给不依赖新逻辑的调用方（DISCLAIMER 等常量用旧模块即可）
+const DISCLAIMER = screenerMod.DISCLAIMER
 
 export const name = 'a-share-screener'
 
@@ -240,6 +262,8 @@ export function apply(ctx, config = {}) {
     },
     async execute(args, exec) {
       const input = args && typeof args === 'object' ? args : {}
+      const runScreen = (await callFresh('runScreen')) ?? screenerMod.runScreen
+      const renderScreenMarkdown = (await callFresh('renderScreenMarkdown')) ?? screenerMod.renderScreenMarkdown
       const result = await runScreen({
         config: resolved,
         args: {
@@ -351,6 +375,8 @@ export function apply(ctx, config = {}) {
     async execute(args, exec) {
       const input = String(args?.name ?? '').trim()
       if (!input) return { error: '请提供股票名称或代码' }
+      const analyzeStock = (await callFresh('analyzeStock')) ?? analyzeMod.analyzeStock
+      const renderAnalysisMarkdown = (await callFresh('renderAnalysisMarkdown')) ?? analyzeMod.renderAnalysisMarkdown
       const result = await analyzeStock({
         config: resolved,
         input,
